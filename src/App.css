@@ -2,6 +2,7 @@
   font-family: sans-serif;
   text-align: center;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   width: 100vw;
 }
@@ -60,6 +61,15 @@ button {
   height: 35px;
   margin: 5px;
   background: red;
+  color: white;
+  border: 1px solid lightgrey;
+}
+
+.btn-reset {
+  width: 100px;
+  height: 35px;
+  margin: 5px;
+  background: blue;
   color: white;
   border: 1px solid lightgrey;
 }

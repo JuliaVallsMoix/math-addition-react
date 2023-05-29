@@ -10,12 +10,23 @@ export default function App() {
   const [firstNumber, setFirstNumber] = useState(randomNumber());
   const [secondNumber, setSecondNumber] = useState(randomNumber());
   const [inputNumber, setInputNumber] = useState('');
+  const [showMessage, setShowMessage] = useState(false);
+
+  //Calculo la variable isCorrect en función de las variables de estado. Yo tengo la certeza que cada vez que cambia una variable de estado, esta instrucción se vuelve a ejecutar.
+
+  let isCorrect = firstNumber + secondNumber === +inputNumber;
+
   const handleClick = () => {
-    if (firstNumber + secondNumber === +inputNumber) {
-      console.log('Correct');
-    } else if (firstNumber + secondNumber !== inputNumber) {
-      console.log('Wrong');
-    }
+
+    setShowMessage(true);
+
+  }
+
+  const handleReset = () => {
+    setFirstNumber(randomNumber);
+    setSecondNumber(randomNumber);
+    setInputNumber('');
+    setShowMessage(false);
   }
 
   return (
@@ -36,7 +47,18 @@ export default function App() {
         <div>
           <button id="btn" onClick={handleClick} > Check
           </button>
+          <button className="btn-reset" onClick={handleReset}>
+            Reset
+          </button>
         </div>
+      </div>
+      <div style={{display: showMessage ? 'block' : 'none'}}>
+          {isCorrect && <p className="correct">El resultado es correcto</p>}
+          {!isCorrect && <p className="incorrect">El resultado es incorrecto</p>}
+
+        {/* Una altra manera de fer-ho:
+        <p style={{ display: isCorrect ? 'block' : 'none' }} className="correct">El resultado es correcto</p>
+        <p style={{ display: !isCorrect ? 'block' : 'none' }} className="incorrect">El resultado es incorrecto</p>  */}
       </div>
     </div>
   );
